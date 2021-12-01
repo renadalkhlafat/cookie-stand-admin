@@ -9,31 +9,26 @@ export default function ReportTable(props) {
         <thead >
           <tr >
             <td className="w-1/6 font-bold border border-separate border-green-800">Location</td>
-            {hours.map(hour =>
-              <td  key={hour} className="w-12 font-bold border border-separate border-green-800">{hour}</td>
+            {hours.map((hour,index) =>
+              <td  key={index} className="w-12 font-bold border border-separate border-green-800">{hour}</td>
             )}
             <td className="w-1/6 font-bold border border-separate border-green-800">Totals</td>
           </tr>
         </thead>
         <tbody>
 
-          {props.cookiesArray.map(cookie =>
+          {props.cookiesArray.map((cookie,index)=>
             <tr >
-              <td key={cookie.location} className="border border-separate border-green-800 ">{cookie.location}</td>
-              {cookie.customerPerHour.map(item =>
-                <td key={item} className="border border-separate border-green-800 ">{item}</td>)}
-                <td key={cookie.location} className="border border-separate border-green-800 ">{cookie.total}</td>
+              <td key={index} className="border border-separate border-green-800 ">{cookie.location}</td>
+              {cookie.customerPerHour.map((item,index) =>
+                <td key={index} className="border border-separate border-green-800 ">{item}</td>)}
+                <td key={index} className="border border-separate border-green-800 ">{cookie.total}</td>
             </tr>
           )}
         </tbody>
         <tfoot >
           <tr >
             <td className="font-bold border border-separate border-green-800">Total</td>
-            {props.cookiesArray.map(cookie=>
-              {cookie.totalPerHour.map(total=>
-                <td>{total}</td>
-                )}
-              )}
           </tr>
         </tfoot>
       </table>
