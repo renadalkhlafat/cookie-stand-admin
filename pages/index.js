@@ -14,11 +14,15 @@ export default function Home() {
   function submitHandler(e) {
     const randCust =[]
     const cookiesPurches =[]
+    const totals = 0
+    const totalPerHour = []
     e.preventDefault();
-    for (var i = 0; i < hours.length; i++){
+    for (let i = 0; i < hours.length; i++){
       const customer = Math.floor(Math.random()* (Math.floor(~e.target.maxCustomer.value)-Math.ceil(~e.target.minCustomer.value)+1)-Math.ceil(~e.target.minCustomer.value))     
       randCust.push(customer)
-      cookiesPurches.push(Math.ceil(customer*e.target.avg.value))
+      const sales = Math.ceil(customer*e.target.avg.value)
+      cookiesPurches.push(sales)
+      totals+=sales
       console.log(randCust);
       console.log(cookiesPurches);
     }
@@ -29,10 +33,18 @@ export default function Home() {
       avg: e.target.avg.value,
       location: e.target.location.value,
       customerPerHour:cookiesPurches,
+      total: totalPerHour,
     }
     console.log(cookiesdata);
     setCoookiesArray(x => [...x, cookiesdata])
     
+    for (let i = 0; i < cookiesArray.length;i++){
+      for (let j=0; j< hours.length;j++){
+        total += cookiesArray[i].cookiesPurches[j]
+        totalPerHour.push(total)
+        console.log(totalPerHour);
+      } 
+    }
     }
     
   return (

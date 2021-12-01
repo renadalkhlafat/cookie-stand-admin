@@ -22,12 +22,18 @@ export default function ReportTable(props) {
               <td key={cookie.location} className="border border-separate border-green-800 ">{cookie.location}</td>
               {cookie.customerPerHour.map(item =>
                 <td key={item} className="border border-separate border-green-800 ">{item}</td>)}
+                <td key={cookie.location} className="border border-separate border-green-800 ">{cookie.total}</td>
             </tr>
           )}
         </tbody>
         <tfoot >
           <tr >
             <td className="font-bold border border-separate border-green-800">Total</td>
+            {props.cookiesArray.map(cookie=>
+              {cookie.totalPerHour.map(total=>
+                <td>{total}</td>
+                )}
+              )}
           </tr>
         </tfoot>
       </table>
