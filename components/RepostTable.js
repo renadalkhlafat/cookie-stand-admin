@@ -6,22 +6,21 @@ export default function ReportTable(props) {
   } else {
     return (
       <table className="mt-4 bg-green-500 border border-separate border-green-800 rounded-md table-fixed ">
-        <thead >
+        <thead>
           <tr >
             <td className="w-1/6 font-bold border border-separate border-green-800">Location</td>
-            {hours.map(hour =>
-              <td  key={hour} className="w-12 font-bold border border-separate border-green-800">{hour}</td>
+            {hours.map((hour,index) =>
+              <td  key={index} className="w-12 font-bold border border-separate border-green-800">{hour}</td>
             )}
             <td className="w-1/6 font-bold border border-separate border-green-800">Totals</td>
           </tr>
         </thead>
         <tbody>
-
           {props.cookiesArray.map(cookie =>
             <tr >
               <td key={cookie.location} className="border border-separate border-green-800 ">{cookie.location}</td>
-              {cookie.customerPerHour.map(item =>
-                <td key={item} className="border border-separate border-green-800 ">{item}</td>)}
+              {cookie.customerPerHour.map((item,index) =>
+                <td key={index} className="border border-separate border-green-800 ">{item}</td>)}
                 <td key={cookie.location} className="border border-separate border-green-800 ">{cookie.total}</td>
             </tr>
           )}
@@ -29,18 +28,12 @@ export default function ReportTable(props) {
         <tfoot >
           <tr >
             <td className="font-bold border border-separate border-green-800">Total</td>
-            {props.cookiesArray.map(cookie=>
-              {cookie.totalPerHour.map(total=>
-                <td>{total}</td>
+              {props.totalTotalPerHour.map((total,index)=>
+                <td key={index} className="border border-separate border-green-800 ">{total}</td>
                 )}
-              )}
           </tr>
         </tfoot>
       </table>
-      //  <p>{props.cookiesArray.map(cookie=>
-      //    <p>{`{ "Location":"${cookie.location}","minCustomers": "${cookie.minCustomer}","maxCustomers": "${cookie.minCustomer}" ,"avgCookies": "${cookie.avg}" }`}</p>
-      //    )}</p>
-
     )
   }
 

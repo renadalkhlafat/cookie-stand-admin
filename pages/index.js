@@ -6,47 +6,51 @@ import CreateForm from '../components/CreateForm'
 import ReportTable from '../components/RepostTable'
 import { hours } from "../data"
 export default function Home() {
-  
-  // const [randCust, setRandCust] = useState([])
+
+  const [totalTotalPerHour, setTotalPerHour] = useState([])
   const [cookiesArray, setCoookiesArray] = useState([])
-  
+
 
   function submitHandler(e) {
-    const randCust =[]
-    const cookiesPurches =[]
+    const randCust = []
+    const cookiesPurches = []
     const totals = 0
-    const totalPerHour = []
+   
     e.preventDefault();
-    for (let i = 0; i < hours.length; i++){
-      const customer = Math.floor(Math.random()* (Math.floor(~e.target.maxCustomer.value)-Math.ceil(~e.target.minCustomer.value)+1)-Math.ceil(~e.target.minCustomer.value))     
+    for (let i = 0; i < hours.length; i++) {
+      const customer = Math.floor(Math.random() * (Math.floor(~e.target.maxCustomer.value) - Math.ceil(~e.target.minCustomer.value) + 1) - Math.ceil(~e.target.minCustomer.value))
       randCust.push(customer)
-      const sales = Math.ceil(customer*e.target.avg.value)
+      const sales = Math.ceil(customer * e.target.avg.value)
       cookiesPurches.push(sales)
-      totals+=sales
+      totals += sales
       console.log(randCust);
       console.log(cookiesPurches);
     }
-    
+
     const cookiesdata = {
       maxCustomer: e.target.maxCustomer.value,
       minCustomer: e.target.minCustomer.value,
       avg: e.target.avg.value,
       location: e.target.location.value,
-      customerPerHour:cookiesPurches,
-      total: totalPerHour,
+      customerPerHour: cookiesPurches,
+      total: totals,
     }
     console.log(cookiesdata);
-    setCoookiesArray(x => [...x, cookiesdata])
-    
-    for (let i = 0; i < cookiesArray.length;i++){
-      for (let j=0; j< hours.length;j++){
-        total += cookiesArray[i].cookiesPurches[j]
+    setCoookiesArray(x => [...x, cookiesdata])   
+  }
+  function totalSalesPerHour(cookiesArray){
+    const totalPerHour = []
+    for (let i = 0; i < cookiesArray.length; i++) {
+      const total =0
+      for (let j = 0; j < hours.length; j++) {
+        total+= cookiesArray[i].cookiesPurches[j]
         totalPerHour.push(total)
         console.log(totalPerHour);
-      } 
+      }
+      setTotalPerHour(x => [...x, totalPerHour])
     }
-    }
-    
+  }
+  totalSalesPerHour(cookiesArray)
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <Head>
@@ -55,7 +59,7 @@ export default function Home() {
       <Header />
       <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
         <CreateForm onSubmit={submitHandler} />
-        <ReportTable cookiesArray={cookiesArray} />
+        <ReportTable cookiesArray={cookiesArray} totalTotalPerHour={totalTotalPerHour} />
       </main>
       <Footer len={cookiesArray.length} />
     </div>
