@@ -6,7 +6,7 @@ export default function ReportTable(props) {
   } else {
     return (
       <table className="mt-4 bg-green-500 border border-separate border-green-800 rounded-md table-fixed ">
-        <thead  >
+        <thead >
           <tr >
             <td className="w-1/6 font-bold border border-separate border-green-800">Location</td>
             {hours.map(hour =>
@@ -20,6 +20,8 @@ export default function ReportTable(props) {
           {props.cookiesArray.map(cookie =>
             <tr >
               <td key={cookie.location} className="border border-separate border-green-800 ">{cookie.location}</td>
+              {cookie.customerPerHour.map(item =>
+                <td key={item} className="border border-separate border-green-800 ">{item}</td>)}
             </tr>
           )}
         </tbody>
@@ -27,8 +29,6 @@ export default function ReportTable(props) {
           <tr >
             <td className="font-bold border border-separate border-green-800">Total</td>
           </tr>
-
-
         </tfoot>
       </table>
       //  <p>{props.cookiesArray.map(cookie=>
