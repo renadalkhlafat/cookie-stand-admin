@@ -7,7 +7,8 @@ import ReportTable from '../components/RepostTable'
 import { hours } from "../data"
 export default function Home() {
 
-  const [cookiesArray, setCoookiesArray] = useState()
+  // const [randCust, setRandCust] = useState([])
+  const [cookiesArray, setCoookiesArray] = useState([])
 
 
   function submitHandler(e) {
@@ -25,7 +26,7 @@ export default function Home() {
       console.log(randCust);
       console.log(cookiesPurches);
     }
-    setPurcheses(cookiesPurches)
+
     const cookiesdata = {
       maxCustomer: e.target.maxCustomer.value,
       minCustomer: e.target.minCustomer.value,
