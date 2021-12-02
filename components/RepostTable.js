@@ -37,11 +37,11 @@ export default function ReportTable(props) {
         </tbody>
         <tfoot >
           <tr >
-            <td className="font-bold border border-separate border-green-800">Total</td>
+            <td className="font-bold border-green-800">Total</td>
             {sales.map((item,index)=>{
-                return(<td key ={index} className="border border-separate border-green-800 ">{item}</td>)
+                return(<td key ={index} className="font-bold border-green-700 ">{item}</td>)
             })}
-            <td className="border border-separate border-green-800 " >{totalOfTotals ? totalOfTotals.reduce((acc,current)=>(acc+current)):0}</td>
+            <td className="font-bold border-green-800" >{totalOfTotals ? totalOfTotals.reduce((acc,current)=>(acc+current)):0}</td>
           </tr>
         </tfoot>
       </table>
