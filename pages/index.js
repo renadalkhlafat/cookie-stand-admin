@@ -7,15 +7,15 @@ import ReportTable from '../components/RepostTable'
 import { hours } from "../data"
 export default function Home() {
 
-  const [totalTotalPerHour, setTotalPerHour] = useState([])
+  // const [randCust, setRandCust] = useState([])
   const [cookiesArray, setCoookiesArray] = useState([])
 
-
+  
   function submitHandler(e) {
     const randCust = []
     const cookiesPurches = []
     const totals = 0
-   
+    
     e.preventDefault();
     for (let i = 0; i < hours.length; i++) {
       const customer = Math.floor(Math.random() * (Math.floor(~e.target.maxCustomer.value) - Math.ceil(~e.target.minCustomer.value) + 1) - Math.ceil(~e.target.minCustomer.value))
@@ -36,21 +36,9 @@ export default function Home() {
       total: totals,
     }
     console.log(cookiesdata);
-    setCoookiesArray(x => [...x, cookiesdata])   
+    setCoookiesArray(x => [...x, cookiesdata])
   }
-  function totalSalesPerHour(cookiesArray){
-    const totalPerHour = []
-    for (let i = 0; i < cookiesArray.length; i++) {
-      const total =0
-      for (let j = 0; j < hours.length; j++) {
-        total+= cookiesArray[i].cookiesPurches[j]
-        totalPerHour.push(total)
-        console.log(totalPerHour);
-      }
-      setTotalPerHour(x => [...x, totalPerHour])
-    }
-  }
-  totalSalesPerHour(cookiesArray)
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <Head>
@@ -59,7 +47,7 @@ export default function Home() {
       <Header />
       <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
         <CreateForm onSubmit={submitHandler} />
-        <ReportTable cookiesArray={cookiesArray} totalTotalPerHour={totalTotalPerHour} />
+        <ReportTable cookiesArray={cookiesArray}/>
       </main>
       <Footer len={cookiesArray.length} />
     </div>
